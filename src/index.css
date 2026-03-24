@@ -234,20 +234,15 @@ section { padding: 96px 0; }
   position: relative;
   width: 380px;
   height: 460px;
-  /* NO overflow:hidden — image is never clipped */
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
 }
 
-/* Blob is purely decorative — clipped to shape, sits behind the photo */
+/* Blob clips everything inside — gradient + photo */
 .hero-img-blob {
   position: absolute;
   inset: 0;
   border-radius: 44% 56% 60% 40% / 44% 40% 60% 56%;
   overflow: hidden;
   animation: morphRing 8s ease-in-out infinite;
-  z-index: 1;
 }
 
 .hero-img-ring {
@@ -271,14 +266,16 @@ section { padding: 96px 0; }
   filter: blur(30px);
 }
 
-/* Photo sits on top of blob — full transparent PNG, never clipped */
+/* Image fills the blob, face centered in upper portion */
 .hero-img {
-  position: relative;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
   z-index: 2;
-  width: 105%;
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 10px 40px rgba(99,102,241,0.45));
+  filter: drop-shadow(0 10px 30px rgba(99,102,241,0.3));
   animation: heroFloat 5s ease-in-out infinite;
 }
 
@@ -1074,7 +1071,7 @@ footer {
   .hero-image-col { order: 1; }
   .hero-cta { justify-content: center; flex-wrap: wrap; gap: 10px; }
   .hero-socials { justify-content: center; }
-  .hero-img-wrap { width: 260px; height: auto; }
+  .hero-img-wrap { width: 260px; height: 320px; }
   .hero-name { font-size: clamp(2.4rem, 12vw, 3.5rem); letter-spacing: -1.5px; }
   .hero-title { font-size: 0.95rem; }
   .hero-desc { font-size: 0.88rem; margin-bottom: 24px; }
@@ -1115,7 +1112,7 @@ footer {
 
 /* ─── EXTRA SMALL ───────────────────────────── */
 @media (max-width: 480px) {
-  .hero-img-wrap { width: 200px; height: auto; }
+  .hero-img-wrap { width: 200px; height: 250px; }
   .hero-name { font-size: clamp(2rem, 14vw, 3rem); }
   .hero-cta .btn { width: 100%; justify-content: center; }
   .edu-card { padding: 16px 14px; }

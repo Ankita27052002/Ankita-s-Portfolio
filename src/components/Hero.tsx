@@ -79,8 +79,8 @@ export default function Hero() {
             <div className="hero-img-blob">
               <div className="hero-img-ring" />
               <div className="hero-img-glow" />
+              <img src={profileImg} alt="Ankita Mandal" className="hero-img" />
             </div>
-            <img src={profileImg} alt="Ankita Mandal" className="hero-img" />
           </div>
         </div>
       </div>
