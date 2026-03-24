@@ -266,14 +266,14 @@ section { padding: 96px 0; }
   filter: blur(30px);
 }
 
-/* Image fills the blob, face centered in upper portion */
+/* Image fills the blob with full body visible */
 .hero-img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center 35%;
+  object-fit: contain;
+  object-position: center bottom;
   z-index: 2;
   filter: drop-shadow(0 10px 30px rgba(99,102,241,0.3));
   animation: heroFloat 5s ease-in-out infinite;
