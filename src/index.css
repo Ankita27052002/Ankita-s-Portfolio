@@ -234,18 +234,27 @@ section { padding: 96px 0; }
   position: relative;
   width: 380px;
   height: 460px;
-  overflow: hidden;
+  /* NO overflow:hidden — image is never clipped */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* Blob is purely decorative — clipped to shape, sits behind the photo */
+.hero-img-blob {
+  position: absolute;
+  inset: 0;
   border-radius: 44% 56% 60% 40% / 44% 40% 60% 56%;
+  overflow: hidden;
   animation: morphRing 8s ease-in-out infinite;
+  z-index: 1;
 }
 
 .hero-img-ring {
   position: absolute;
   inset: 0;
-  border-radius: inherit;
   background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
-  opacity: 0.28;
-  filter: blur(0);
+  opacity: 0.32;
 }
 
 @keyframes morphRing {
@@ -257,20 +266,19 @@ section { padding: 96px 0; }
 .hero-img-glow {
   position: absolute;
   inset: 0;
-  border-radius: inherit;
   background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
   opacity: 0.18;
   filter: blur(30px);
 }
 
+/* Photo sits on top of blob — full transparent PNG, never clipped */
 .hero-img {
-  position: absolute;
+  position: relative;
   z-index: 2;
-  width: 100%;
-  height: 100%;
+  width: 105%;
+  height: auto;
   object-fit: contain;
-  object-position: center center;
-  filter: drop-shadow(0 10px 30px rgba(99,102,241,0.3));
+  filter: drop-shadow(0 10px 40px rgba(99,102,241,0.45));
   animation: heroFloat 5s ease-in-out infinite;
 }
 
@@ -1066,7 +1074,7 @@ footer {
   .hero-image-col { order: 1; }
   .hero-cta { justify-content: center; flex-wrap: wrap; gap: 10px; }
   .hero-socials { justify-content: center; }
-  .hero-img-wrap { width: 220px; height: 270px; }
+  .hero-img-wrap { width: 260px; height: auto; }
   .hero-name { font-size: clamp(2.4rem, 12vw, 3.5rem); letter-spacing: -1.5px; }
   .hero-title { font-size: 0.95rem; }
   .hero-desc { font-size: 0.88rem; margin-bottom: 24px; }
@@ -1107,7 +1115,7 @@ footer {
 
 /* ─── EXTRA SMALL ───────────────────────────── */
 @media (max-width: 480px) {
-  .hero-img-wrap { width: 160px; height: 195px; }
+  .hero-img-wrap { width: 200px; height: auto; }
   .hero-name { font-size: clamp(2rem, 14vw, 3rem); }
   .hero-cta .btn { width: 100%; justify-content: center; }
   .edu-card { padding: 16px 14px; }
